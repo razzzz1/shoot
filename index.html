@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Canvas Aim Training</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <style>
-        body{
-            background: grey;
-            display:flex;
-            align-content: center;
-            justify-content: center;
-        }
-        canvas{
-            cursor:none;
-        }
-        .background{
-            background: #e2e2e2;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aim Trainer Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
 </head>
-<body>
-<div class="background">
-    <canvas id="aim"></canvas>
-</div>
-<script src="app.js"></script>
+<body class="bg-gray-900 text-white font-sans">
+  <main class="min-h-screen flex flex-col items-center justify-center p-4">
+    <section id="username-section" class="w-full max-w-md text-center mb-6">
+      <label for="username" class="block text-lg mb-2">Enter Username</label>
+      <input id="username" type="text" placeholder="Your name" class="w-full p-2 text-black rounded">
+      <button id="save-username" class="mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">Save</button>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="text-center space-y-4">
+      <h1 class="text-3xl font-bold">Canvas Aim Trainer</h1>
+      <div class="space-y-2">
+        <button data-mode="mode1" class="game-mode-btn bg-green-600 px-4 py-2 rounded">Mode 1: Fixed Targets</button>
+        <button data-mode="mode2" class="game-mode-btn bg-yellow-500 px-4 py-2 rounded">Mode 2: Timed</button>
+        <button data-mode="infinity" class="game-mode-btn bg-purple-600 px-4 py-2 rounded">Infinity Mode</button>
+      </div>
+      <div>
+        <label for="target-size" class="block mt-4">Target Size</label>
+        <input type="range" min="10" max="100" id="target-size" class="w-full">
+      </div>
+      <button id="view-stats" class="mt-4 px-4 py-2 bg-gray-700 rounded">View Stats</button>
+    </section>
+
+    <!-- Game Canvas -->
+    <section id="game-container" class="mt-8 hidden relative">
+      <canvas id="aim" width="800" height="600" class="border-2 border-white"></canvas>
+      <div class="absolute top-2 left-2">
+        <p id="score-display">Score: 0</p>
+        <p id="miss-display">Misses: 0</p>
+        <p id="timer-display">Time: 0s</p>
+      </div>
+      <button id="end-game" class="absolute bottom-2 right-2 px-4 py-2 bg-red-600 rounded">End Game</button>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <section id="stats" class="hidden mt-6 w-full max-w-xl">
+      <h2 class="text-2xl font-semibold mb-4">Game Stats</h2>
+      <ul id="stats-list" class="space-y-2"></ul>
+      <button id="back-to-menu" class="mt-4 px-4 py-2 bg-blue-600 rounded">Back to Menu</button>
+    </section>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>

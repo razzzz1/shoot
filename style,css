@@ -1,0 +1,12 @@
+canvas {
+  cursor: none;
+  background: #1f2937;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background: #10b981;
+}
+
+#aim {
+  background-color: #000000;
+}
